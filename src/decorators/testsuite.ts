@@ -2,7 +2,7 @@ import 'reflect-metadata'
 import { Test } from './types'
 import { testcaseMetadataKey } from './constants'
 
-const buider = (testsuiteFn, testcaseFn) => (title: string) => {
+const buider = (testsuiteFn: Function, testcaseFn: Function) => (title: string) => {
   return function (constructor: Function): void {
     const tests = Reflect.getOwnMetadata(testcaseMetadataKey, constructor) ?? {} as Test[]
 

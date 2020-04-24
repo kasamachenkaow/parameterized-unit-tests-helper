@@ -1,9 +1,14 @@
 {
   "name": "p-test-js",
-  "version": "1.0.6",
+  "version": "1.0.11",
+  "main": "index.js",
+  "types": "index.d.ts",
   "description": "For parameterized javascript unit testing",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf ./dist && tsc",
+    "link": "tsc && cp package.json dist && cp README.md dist && cd dist && npm link",
+    "dist": "tsc && cp package.json dist && cp README.md dist && cd dist && npm publish",
+    "test": "mocha --require ts-node/register/transpile-only test/**/*.test.ts"
   },
   "repository": {
     "type": "git",
@@ -22,8 +27,12 @@
   },
   "homepage": "https://github.com/kasamachenkaow/parameterized-unit-tests-helper#readme",
   "dependencies": {
+    "@types/mocha": "^7.0.2",
     "mocha": "7.1.1",
-    "reflect-metadata": "0.1.13",
+    "reflect-metadata": "0.1.13"
+  },
+  "devDependencies": {
+    "ts-node": "8.6.2",
     "typescript": "3.7.5"
   }
 }

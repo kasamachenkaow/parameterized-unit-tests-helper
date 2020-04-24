@@ -5,9 +5,9 @@ currently supports only `mocha` but planned to suport more js test frameworks
 
 ### install
 ```
-npm i --save p-test-js
+npm i --save-dev p-test-js
 or
-yarn add p-test-js
+yarn add --dev p-test-js
 ```
 
 ### example
