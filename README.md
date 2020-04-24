@@ -5,21 +5,21 @@ currently supports only `mocha` but planned to suport more js test frameworks
 
 ### install
 ```
-npm i --save p-test-js
+npm i --save p-test-ts
 or
-yarn add p-test-js
+yarn add p-test-ts
 ```
 
 ### example
 ```ts
-import { testsuite, testname, testcase } from 'p-test-js/mocha'
+import { testsuite, testname, testcase } from 'p-test-ts/mocha'
 @testsuite('example test class')
-export class GetReasonsHandlerTest {
+export class DumpCalculatorTest {
 
   @testname('example test class method')
   @testcase(1, 2)
   @testcase(2, 2)
-  shouldReturnBadRequestIfMissingRequiredProp(a: number, b: number): void {
+  superDumpPlusTest(a: number, b: number): void {
     const r = a + b
     expect(r).to.be.eq(4)
   }
