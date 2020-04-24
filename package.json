@@ -1,6 +1,6 @@
 {
   "name": "p-test-js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "For parameterized javascript unit testing",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/kasamachenkaow/parameterized-unit-tests-helper#readme",
   "dependencies": {
-    "jest": "^25.4.0",
     "mocha": "7.1.1",
     "reflect-metadata": "0.1.13",
     "typescript": "3.7.5"
