@@ -1,5 +1,5 @@
-import testnameBuilder from './testcase'
-import testcaseBuilder from './testname'
+import testnameBuilder from './testname'
+import testcaseBuilder from './testcase'
 import testsuiteBuilder from './testsuite'
 
 export {

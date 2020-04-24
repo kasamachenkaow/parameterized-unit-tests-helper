@@ -4,7 +4,7 @@
 //   testnameBuilder,
 //   testcaseBuilder,
 //   testsuiteBuilder,
-// } from './decorators'
+// } from './src/decorators'
 
 // export default {
 //   testname: testnameBuilder(),

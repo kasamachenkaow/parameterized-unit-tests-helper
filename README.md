@@ -17,18 +17,18 @@ import { testsuite, testname, testcase } from 'p-test-js/mocha'
 export class DumpCalculatorTest {
 
   @testname('example test class method')
-  @testcase(1, 2)
-  @testcase(2, 2)
-  superDumpPlusTest(a: number, b: number): void {
+  @testcase(1, 2, 3)
+  @testcase(2, 2, 4)
+  superDumpPlusTest(a: number, b: number, expoected: number): void {
     const r = a + b
-    expect(r).to.be.eq(4)
+    expect(r).to.be.eq(expected)
   }
 }
 ```
 ### output
 ```
 example test class
-    X example test class method with 1,2
+    ✓ example test class method with 1,2
     ✓ example test class method with 2,2
 ```
 
