@@ -5,14 +5,14 @@ currently supports only `mocha` but planned to suport more js test frameworks
 
 ### install
 ```
-npm i --save p-test-ts
+npm i --save p-test-js
 or
-yarn add p-test-ts
+yarn add p-test-js
 ```
 
 ### example
 ```ts
-import { testsuite, testname, testcase } from 'p-test-ts/mocha'
+import { testsuite, testname, testcase } from 'p-test-js/mocha'
 @testsuite('example test class')
 export class DumpCalculatorTest {
 
