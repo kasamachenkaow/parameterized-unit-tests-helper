@@ -1,4 +1,14 @@
 # parameterized-unit-tests-helper
+This module is to help writing javascript unit testing 
+in the parameterized way
+currently supports only `mocha` but planned to suport more js test frameworks
+
+### install
+```
+npm i --save p-test-js
+or
+yarn add p-test-js
+```
 
 ### example
 ```ts
