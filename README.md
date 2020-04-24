@@ -10,7 +10,7 @@ or
 yarn add --dev p-test-js
 ```
 
-### example
+### example typescript
 ```ts
 import { testsuite, testname, testcase } from 'p-test-js/mocha'
 @testsuite('example test class')
@@ -19,12 +19,13 @@ export class DumpCalculatorTest {
   @testname('example test class method')
   @testcase(1, 2, 3)
   @testcase(2, 2, 4)
-  superDumpPlusTest(a: number, b: number, expoected: number): void {
+  superDumpPlusTest(a: number, b: number, expected: number): void {
     const r = a + b
     expect(r).to.be.eq(expected)
   }
 }
 ```
+
 ### output
 ```
 example test class
