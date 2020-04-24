@@ -28,8 +28,8 @@ export class GetReasonsHandlerTest {
 ### output
 ```
 example test class
+    X example test class method with 1,2
     ✓ example test class method with 2,2
-    X example test class method 1,2
 ```
 
 ### todo

@@ -8,7 +8,7 @@ const buider = (testsuiteFn, testcaseFn) => (title: string) => {
 
     testsuiteFn(title, () => {
       tests.forEach((t: Test) =>
-        t.cases.forEach((args: unknown[]) =>
+        t.cases.reverse().forEach((args: unknown[]) =>
           testcaseFn(`${t.name} with ${args.toString()}`, () => {
             if (t.fn) {
               t.fn(...args)
