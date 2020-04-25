@@ -1,6 +1,6 @@
 {
   "name": "p-test-js",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "main": "index.js",
   "types": "index.d.ts",
   "description": "For parameterized javascript unit testing",
@@ -17,10 +17,15 @@
   "author": "Kasama Chenkaow",
   "license": "ISC",
   "keywords": [
+    "parameterised",
     "parameterized",
-    "parameterized testing",
-    "parameterized js testing",
-    "parameterized js unit testing"
+    "test",
+    "tests",
+    "testing",
+    "unit test",
+    "unit tests",
+    "unit testing",
+    "mocha"
   ],
   "bugs": {
     "url": "https://github.com/kasamachenkaow/parameterized-unit-tests-helper/issues"
