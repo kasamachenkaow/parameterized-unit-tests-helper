@@ -2,15 +2,15 @@ import { getTestData, putTestData } from "./utils/testdata";
 import { TestData } from "./utils/types";
 
 const buider = () =>
-  (name: string) => {
+  (afterEachFn: Function) => {
     return function (target: object, propertyKey: string): void {
-      const testData = getTestData(target.constructor, propertyKey) ?? {
+      const testdata = getTestData(target.constructor, propertyKey) ?? {
         key: propertyKey,
       } as TestData;
 
-      testData.name = name;
+      testdata.afterEach = afterEachFn;
 
-      putTestData(target.constructor, propertyKey, testData);
+      putTestData(target.constructor, propertyKey, testdata);
     };
   };
 

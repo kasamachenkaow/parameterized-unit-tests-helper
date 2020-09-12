@@ -1,14 +1,18 @@
 {
   "name": "p-test-js",
-  "version": "1.0.14",
+  "version": "1.0.16",
+  "engines": {
+    "node": "12"
+  },
   "main": "index.js",
   "types": "index.d.ts",
   "description": "For parameterized javascript unit testing",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
-    "link": "tsc && cp package.json dist && cp README.md dist && cd dist && npm link",
-    "dist": "tsc && cp package.json dist && cp README.md dist && cd dist && npm publish",
-    "test": "mocha --require ts-node/register/transpile-only test/**/*.test.ts"
+    "rm:test": "find . -name '*.test.*' -type f -delete",
+    "dist": "tsc && cp package.json dist && cp README.md dist && cd dist && npm run rm:test && npm publish",
+    "test": "mocha --require ts-node/register/transpile-only ./**/*.test.ts",
+    "push": "git push && git tag v1.0.17 && git push origin v1.0.17"
   },
   "repository": {
     "type": "git",
@@ -32,12 +36,19 @@
   },
   "homepage": "https://github.com/kasamachenkaow/parameterized-unit-tests-helper#readme",
   "dependencies": {
-    "@types/mocha": "^7.0.2",
     "mocha": "7.1.1",
     "reflect-metadata": "0.1.13"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "chai": "^4.2.0",
+    "eslint": "^7.8.1",
+    "sinon": "^9.0.2",
     "ts-node": "8.6.2",
+    "ts-sinon": "^1.2.0",
     "typescript": "3.7.5"
   }
 }

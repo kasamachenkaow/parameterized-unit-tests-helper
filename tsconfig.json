@@ -14,12 +14,23 @@
     "noUnusedParameters": true,
     "preserveConstEnums": true,
     "experimentalDecorators": true,
+    "allowJs": true,
     "emitDecoratorMetadata": true,
     "strictNullChecks": true,
     "outDir": "dist",
-    "typeRoots": ["./node_modules/@types", "./typings"],
-    "sourceMap": true
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ],
+    "sourceMap": false
   },
   "compileOnSave": true,
-  "include": [".", "test/**/*", "src/**/*"]
+  "files": [
+    "index.ts",
+    "mocha.ts"
+  ],
+  "include": [
+    "src/**/*",
+    "mocha.test.ts"
+  ]
 }
