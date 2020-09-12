@@ -1,16 +1,17 @@
-import { getTestData, putTestData } from './utils/testdata'
-import { TestData } from './utils/types'
+import { getTestData, putTestData } from "./utils/testdata";
+import { TestData } from "./utils/types";
 
-const buider = () => (beforeEachFn: Function) => {
-  return function (target: object, propertyKey: string): void {
-    const testdata = getTestData(target.constructor, propertyKey) ?? {
-      key: propertyKey,
-    } as TestData
+const buider = () =>
+  (beforeEachFn: Function) => {
+    return function (target: object, propertyKey: string): void {
+      const testdata = getTestData(target.constructor, propertyKey) ?? {
+        key: propertyKey,
+      } as TestData;
 
-    testdata.beforeEach = beforeEachFn
+      testdata.beforeEach = beforeEachFn;
 
-    putTestData(target.constructor, propertyKey, testdata)
-  }
-}
+      putTestData(target.constructor, propertyKey, testdata);
+    };
+  };
 
-export default buider
+export default buider;

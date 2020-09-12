@@ -1,5 +1,5 @@
-import * as mocha from './mocha'
+import * as mocha from "./mocha";
 
 export default {
-  mocha
-}
+  mocha,
+};

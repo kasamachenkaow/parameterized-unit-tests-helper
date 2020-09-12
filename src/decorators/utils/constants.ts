@@ -1,1 +1,1 @@
-export const testcaseMetadataKey = Symbol('testcase')
+export const testcaseMetadataKey = Symbol("testcase");
