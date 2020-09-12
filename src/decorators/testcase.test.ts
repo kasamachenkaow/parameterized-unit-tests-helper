@@ -9,16 +9,19 @@ import {
   testcase,
   testcategory,
   beforeEach,
+  // afterEach,
 } from "p-test-js/mocha";
 import testcaseBuilder from "./testcase";
 import { TestData } from "./utils/types";
-import { getTestData, putTestData } from "./utils/testdata";
+
+// import { getTestData, putTestData } from "./utils/testdata";
 
 @testsuite("testcase decorators tests")
 export class TestCaseTest {
   @testcategory("happy paths")
   @testname("should push testcase based on given args correctly")
-  @beforeEach(() => console.log("each"))
+  @beforeEach(() => console.log("beforeEach"))
+  // @afterEach(() => console.log("afterEach"))
   @testcase([1, 2, 3], "t1")
   @testcase([2, 2, 4], "t2")
   happyPaths(args: unknown[], testId: string): void {
