@@ -5,6 +5,7 @@ import {
   testsuiteBuilder,
   testcategoryBuilder,
   beforeEachBuilder,
+  afterEachBuilder,
 } from "./src/decorators";
 
 export const testname = testnameBuilder();
@@ -17,6 +18,7 @@ export const testsuite = testsuiteBuilder(
 );
 export const testcategory = testcategoryBuilder();
 export const beforeEach = beforeEachBuilder();
+export const afterEach = afterEachBuilder();
 
 export default {
   testname,
@@ -24,4 +26,5 @@ export default {
   testsuite,
   testcategory,
   beforeEach,
+  afterEach,
 };

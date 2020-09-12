@@ -19,6 +19,8 @@ import { expect } from 'chai'
 export class DumpCalculatorTest {
 
   @testname('example test class method')
+  @beforeEach(() => console.log("beforeEach"))
+  @afterEach(() => console.log("afterEach"))
   @testcase(1, 2, 3)
   @testcase(2, 2, 4)
   superDumpPlusTest(a: number, b: number, expected: number): void {

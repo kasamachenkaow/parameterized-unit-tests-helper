@@ -18,10 +18,19 @@
     "emitDecoratorMetadata": true,
     "strictNullChecks": true,
     "outDir": "dist",
-    "typeRoots": ["./node_modules/@types", "./typings"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ],
     "sourceMap": false
   },
   "compileOnSave": true,
-  "files": ["index.ts", "mocha.ts"],
-  "include": ["src/**/*"]
+  "files": [
+    "index.ts",
+    "mocha.ts"
+  ],
+  "include": [
+    "src/**/*",
+    "mocha.test.ts"
+  ]
 }
