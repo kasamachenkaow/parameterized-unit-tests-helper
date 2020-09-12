@@ -1,6 +1,8 @@
-export interface Test {
+export interface TestData {
   key: string
   name: string
   fn: Function
   cases: unknown[][]
+  beforeEach?: Function
+  cat?: string
 }

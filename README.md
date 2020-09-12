@@ -1,7 +1,7 @@
 # parameterized-unit-tests-helper
-This module is to help writing javascript unit testing 
+This module is to help writing javascript unit testing
 in the parameterized way
-currently supports only `mocha` but planned to suport more js test frameworks
+currently supports only `mocha` but planned to support more javascript test frameworks
 
 ### install
 ```
@@ -10,9 +10,11 @@ or
 yarn add --dev p-test-js
 ```
 
-### example typescript
+### example typescript (mocha)
 ```ts
 import { testsuite, testname, testcase } from 'p-test-js/mocha'
+import { expect } from 'chai'
+
 @testsuite('example test class')
 export class DumpCalculatorTest {
 
@@ -34,5 +36,5 @@ example test class
 ```
 
 ### todo
-- add jest version, follow https://github.com/facebook/jest/pull/9801
+- add jest version, follow https://github.com/facebook/jest/pull/9801, https://github.com/jest-community/eslint-plugin-jest/issues/556
 - write tests

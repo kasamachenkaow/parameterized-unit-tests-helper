@@ -1,30 +1,27 @@
-import 'reflect-metadata'
-import { Test } from './types'
-import { testcaseMetadataKey } from './constants'
+import { getTestData, putTestData } from './utils/testdata'
+import { TestData } from './utils/types'
 
 const buider = () => (...args: unknown[]) => {
   return function (target: object, propertyKey: string, descriptor: PropertyDescriptor): void {
-    const existingTests: Test[] = Reflect.getOwnMetadata(testcaseMetadataKey, target.constructor) ?? []
+    const existingTest = getTestData(target.constructor, propertyKey)
 
-    const existingTest = existingTests.find(t => t.key === propertyKey)
     if (existingTest) {
       if (!existingTest.cases) {
         existingTest.cases = []
       }
       existingTest.cases.push(args)
+      putTestData(target.constructor, propertyKey, existingTest)
     } else {
-      const newTestCases: Test = {
+      const newTestData: TestData = {
         key: propertyKey,
         name: propertyKey,
         fn: descriptor.value,
         cases: [],
       }
 
-      newTestCases.cases.push(args)
-      existingTests.push(newTestCases)
+      newTestData.cases.push(args)
+      putTestData(target.constructor, propertyKey, newTestData)
     }
-
-    Reflect.defineMetadata(testcaseMetadataKey, existingTests, target.constructor)
   }
 }
 

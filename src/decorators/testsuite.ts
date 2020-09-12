@@ -1,22 +1,31 @@
-import 'reflect-metadata'
-import { Test } from './types'
-import { testcaseMetadataKey } from './constants'
+import { getScopeData } from './utils/testdata'
+import { TestData } from './utils/types'
 
-const buider = (testsuiteFn: Function, testcaseFn: Function) => (title: string) => {
-  return function (constructor: Function): void {
-    const tests = Reflect.getOwnMetadata(testcaseMetadataKey, constructor) ?? {} as Test[]
+const buider = (testscopeFn: Function, testcaseFn: Function, beforeEachFn: Function) => {
+  const loopAllCases = (t: TestData) => {
+    if (t.beforeEach) beforeEachFn(t.beforeEach)
+    t.cases.reverse().forEach((args: unknown[]) =>
+      testcaseFn(`${t.name} with ${args.toString()}`, () => {
+        if (t.fn) {
+          t.fn(...args)
+        }
+      }),
+    )
+  }
+  return (title: string) => {
+    return (constructor: Function) => {
+      const testDatas = getScopeData(constructor) ?? {} as TestData[]
 
-    testsuiteFn(title, () => {
-      tests.forEach((t: Test) =>
-        t.cases.reverse().forEach((args: unknown[]) =>
-          testcaseFn(`${t.name} with ${args.toString()}`, () => {
-            if (t.fn) {
-              t.fn(...args)
-            }
-          }),
-        ),
-      )
-    })
+      testscopeFn(title, () => {
+        testDatas.forEach((t: TestData) => {
+          if (t.cat) {
+            testscopeFn(t.cat, () => loopAllCases(t))
+          } else {
+            loopAllCases(t)
+          }
+        })
+      })
+    }
   }
 }
 
