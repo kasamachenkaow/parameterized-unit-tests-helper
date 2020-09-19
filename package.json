@@ -1,6 +1,6 @@
 {
   "name": "p-test-js",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "engines": {
     "node": "12"
   },
@@ -8,11 +8,11 @@
   "types": "index.d.ts",
   "description": "For parameterized javascript unit testing",
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
     "rm:test": "find . -name '*.test.*' -type f -delete",
-    "dist": "npm login && tsc && cp package.json dist && cp README.md dist && cd dist && npm run rm:test && npm publish",
+    "build": "rm -rf ./dist && tsc",
     "test": "mocha --require ts-node/register/transpile-only ./**/*.test.ts",
-    "push": "git push && git tag v1.0.17 && git push origin v1.0.17"
+    "dist": "npm login && tsc && cp package.json dist && cp README.md dist && cd dist && npm run rm:test && npm publish",
+    "push": "git push && git tag v1.0.18 && git push origin v1.0.18"
   },
   "repository": {
     "type": "git",

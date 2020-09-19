@@ -1,16 +1,16 @@
-import { getTestData, putTestData } from "./utils/testdata";
-import { TestData } from "./utils/types";
+import { getTestMethod, putTestMethodIfNotExist } from "./utils/testdata";
+import { TestMethod } from "./utils/types";
 
 const buider = () =>
   (name: string) => {
     return function (target: object, propertyKey: string): void {
-      const testData = getTestData(target.constructor, propertyKey) ?? {
+      const testMethod = getTestMethod(target.constructor, propertyKey) ?? {
         key: propertyKey,
-      } as TestData;
+      } as TestMethod;
 
-      testData.name = name;
+      testMethod.name = name;
 
-      putTestData(target.constructor, propertyKey, testData);
+      putTestMethodIfNotExist(target.constructor, propertyKey, testMethod);
     };
   };
 

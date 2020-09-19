@@ -1,14 +1,15 @@
-import { getScopeData } from "./utils/testdata";
-import { TestData } from "./utils/types";
+import { getTestClass } from "./utils/testdata";
+import { TestMethod, TestClass } from "./utils/types";
 
 const buider = (
   testscopeFn: Function,
   testcaseFn: Function,
+  beforeFn: Function,
+  afterFn: Function,
   beforeEachFn: Function,
   afterEachFn: Function,
 ) => {
-  const loopAllCases = (t: TestData) => {
-    if (t.beforeEach) beforeEachFn(t.beforeEach);
+  const loopAllCases = (t: TestMethod) => {
     t.cases.reverse().forEach((args: unknown[]) =>
       testcaseFn(`${t.name} with ${args.toString()}`, () => {
         if (t.fn) {
@@ -16,20 +17,22 @@ const buider = (
         }
       })
     );
-    if (t.afterEach) afterEachFn(t.afterEach);
   };
   return (title: string) => {
     return (constructor: Function) => {
-      const testDatas = getScopeData(constructor) ?? {} as TestData[];
+      const testClass = getTestClass(constructor) ??
+        { methods: [] } as TestClass;
 
       testscopeFn(title, () => {
-        testDatas.forEach((t: TestData) => {
-          if (t.cat) {
-            testscopeFn(t.cat, () => loopAllCases(t));
-          } else {
-            loopAllCases(t);
-          }
-        });
+        if (testClass.before) beforeFn(testClass.before);
+        if (testClass.beforeEach) beforeEachFn(testClass.beforeEach);
+
+        testClass.methods.forEach((testMethod: TestMethod) =>
+          loopAllCases(testMethod)
+        );
+
+        if (testClass.afterEach) afterEachFn(testClass.afterEach);
+        if (testClass.after) afterFn(testClass.after);
       });
     };
   };

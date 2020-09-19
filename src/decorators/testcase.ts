@@ -1,5 +1,5 @@
-import { getTestData, putTestData } from "./utils/testdata";
-import { TestData } from "./utils/types";
+import { getTestMethod, putTestMethodIfNotExist } from "./utils/testdata";
+import { TestMethod } from "./utils/types";
 
 const buider = () =>
   (...args: unknown[]) => {
@@ -8,24 +8,24 @@ const buider = () =>
       propertyKey: string,
       descriptor: PropertyDescriptor,
     ): void {
-      const existingTest = getTestData(target.constructor, propertyKey);
+      const existingTest = getTestMethod(target.constructor, propertyKey);
 
       if (existingTest) {
         if (!existingTest.cases) {
           existingTest.cases = [];
         }
         existingTest.cases.push(args);
-        putTestData(target.constructor, propertyKey, existingTest);
+        putTestMethodIfNotExist(target.constructor, propertyKey, existingTest);
       } else {
-        const newTestData: TestData = {
+        const newTestMethod: TestMethod = {
           key: propertyKey,
           name: propertyKey,
           fn: descriptor.value,
           cases: [],
         };
 
-        newTestData.cases.push(args);
-        putTestData(target.constructor, propertyKey, newTestData);
+        newTestMethod.cases.push(args);
+        putTestMethodIfNotExist(target.constructor, propertyKey, newTestMethod);
       }
     };
   };

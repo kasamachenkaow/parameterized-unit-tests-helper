@@ -1,38 +1,58 @@
 import "reflect-metadata";
-import { TestData } from "./types";
+import { TestClass, TestMethod } from "./types";
 import { testcaseMetadataKey } from "./constants";
 
-export const getScopeData = (scopeId: object): TestData[] | undefined => {
-  const existingTests: TestData[] | undefined = Reflect.getOwnMetadata(
+export const getTestClass = (scopeId: object): TestClass | undefined => {
+  const testClass: TestClass | undefined = Reflect.getOwnMetadata(
     testcaseMetadataKey,
     scopeId,
   );
-  return existingTests;
-};
-export const getTestData = (
-  scopeId: object,
-  testId: string,
-): TestData | undefined => {
-  const existingTests: TestData[] = getScopeData(scopeId) ?? [];
-
-  const testdata = existingTests.find((t) => t.key === testId);
-
-  return testdata;
+  return testClass;
 };
 
-export const putTestData = (
+export const getTestMethod = (
   scopeId: object,
   testId: string,
-  testdata: TestData,
-) => {
-  let existingTests: TestData[] | undefined = getScopeData(scopeId);
-  let existingTestData: TestData | undefined = getTestData(scopeId, testId);
+): TestMethod | undefined => {
+  const testClass = getTestClass(scopeId);
 
-  if (!existingTests) {
-    existingTests = [];
-    Reflect.defineMetadata(testcaseMetadataKey, existingTests, scopeId);
+  if (!testClass) return undefined;
+
+  const testMethod = testClass.methods.find((t) => t.key === testId);
+
+  return testMethod;
+};
+
+export const putTestClassIfNotExist = (
+  scopeId: object,
+  testClass: TestClass,
+): TestClass => {
+  const existingTestClass = getTestClass(scopeId);
+
+  if (!existingTestClass) {
+    Reflect.defineMetadata(testcaseMetadataKey, testClass, scopeId);
+    return testClass;
   }
-  if (!existingTestData) {
-    existingTests.push(testdata);
+
+  return existingTestClass;
+};
+
+export const putTestMethodIfNotExist = (
+  scopeId: object,
+  testId: string,
+  testMethod: TestMethod,
+): TestMethod => {
+  const testClass = putTestClassIfNotExist(scopeId, { methods: [] });
+
+  let existingTestMethod: TestMethod | undefined = getTestMethod(
+    scopeId,
+    testId,
+  );
+
+  if (!existingTestMethod) {
+    testClass.methods.push(testMethod);
+    return testMethod;
   }
+
+  return existingTestMethod;
 };

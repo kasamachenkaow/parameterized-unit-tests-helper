@@ -1,23 +1,54 @@
 import "reflect-metadata";
+import { expect } from "chai";
 
 import {
   testsuite,
   testname,
   testcase,
-  testcategory,
+  before,
+  after,
   beforeEach,
   afterEach,
 } from "./mocha";
 
-@testsuite("testsuite")
-export class MochaTest {
-  @testcategory("testcategory")
-  @testname("testname")
-  @beforeEach(() => console.log("beforeEach"))
-  @afterEach(() => console.log("afterEach"))
-  @testcase([1, 2, 3], "testcase1")
-  @testcase([2, 2, 4], "testcase2")
-  happyPaths(args: Array<number>[], testId: string): void {
-    console.log(testId, args);
+@testsuite("Example test suite #1")
+@before(() => console.log("Before #1"))
+@after(() => console.log("After #1"))
+export class DumpCalculatorTest1 {
+  @testcase(1, 2, 3)
+  @testcase(2, 2, 4)
+  superDumpPlusTest(a: number, b: number, expected: number): void {
+    const r = a + b;
+    expect(r).to.be.eq(expected);
+  }
+}
+
+@testsuite("Example test suite #2")
+@before(() => console.log("Before #2"))
+@after(() => console.log("After #2"))
+@beforeEach(() => console.log("Before each #2"))
+@afterEach(() => console.log("After each #2"))
+export class DumpCalculatorTest2 {
+  @testname("Example test case #2")
+  @testcase(1, 2, 3)
+  @testcase(2, 2, 4)
+  superDumpPlusTest(a: number, b: number, expected: number): void {
+    const r = a + b;
+    expect(r).to.be.eq(expected);
+  }
+}
+
+@testsuite("Example test suite #3")
+@before(() => console.log("Before #3"))
+@after(() => console.log("After #3"))
+@beforeEach(() => console.log("Before each #3"))
+@afterEach(() => console.log("After each #3"))
+export class DumpCalculatorTest3 {
+  @testname("Example test case #3")
+  @testcase(1, 2, 3)
+  @testcase(2, 2, 4)
+  superDumpPlusTest(a: number, b: number, expected: number): void {
+    const r = a + b;
+    expect(r).to.be.eq(expected);
   }
 }

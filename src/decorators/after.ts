@@ -2,13 +2,13 @@ import { getTestClass, putTestClassIfNotExist } from "./utils/testdata";
 import { TestClass } from "./utils/types";
 
 const buider = () =>
-  (beforeEachFn: Function) => {
+  (afterFn: Function) => {
     return function (constructor: Function): void {
       const testClass = getTestClass(constructor) ?? {
         methods: [],
       } as TestClass;
 
-      testClass.beforeEach = beforeEachFn;
+      testClass.after = afterFn;
 
       putTestClassIfNotExist(constructor, testClass);
     };

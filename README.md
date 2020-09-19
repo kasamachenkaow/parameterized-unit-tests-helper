@@ -10,31 +10,65 @@ or
 yarn add --dev p-test-js
 ```
 
-### example typescript (mocha)
+### example 1 typescript (mocha)
 ```ts
 import { testsuite, testname, testcase } from 'p-test-js/mocha'
 import { expect } from 'chai'
 
-@testsuite('example test class')
-export class DumpCalculatorTest {
-
-  @testname('example test class method')
-  @beforeEach(() => console.log("beforeEach"))
-  @afterEach(() => console.log("afterEach"))
+@testsuite("Example test suite #1")
+@before(() => console.log("Before #1"))
+@after(() => console.log("After #1"))
+export class DumpCalculatorTest1 {
   @testcase(1, 2, 3)
   @testcase(2, 2, 4)
   superDumpPlusTest(a: number, b: number, expected: number): void {
-    const r = a + b
-    expect(r).to.be.eq(expected)
+    const r = a + b;
+    expect(r).to.be.eq(expected);
   }
 }
 ```
 
-### output
+### output 1
 ```
-example test class
-    ✓ example test class method with 1,2
-    ✓ example test class method with 2,2
+  Example test suite #1
+Before #1
+    ✓ superDumpPlusTest with 1,2,3
+    ✓ superDumpPlusTest with 2,2,4
+After #1
+```
+
+### example 2 typescript (mocha)
+```ts
+import { testsuite, testname, testcase } from 'p-test-js/mocha'
+import { expect } from 'chai'
+
+@testsuite("Example test suite #2")
+@before(() => console.log("Before #2"))
+@after(() => console.log("After #2"))
+@beforeEach(() => console.log("Before each #2"))
+@afterEach(() => console.log("After each #2"))
+export class DumpCalculatorTest2 {
+  @testname("Example test case #2")
+  @testcase(1, 2, 3)
+  @testcase(2, 2, 4)
+  superDumpPlusTest(a: number, b: number, expected: number): void {
+    const r = a + b;
+    expect(r).to.be.eq(expected);
+  }
+}
+```
+
+### output 2
+```
+  Example test suite #2
+Before #2
+Before each #2
+    ✓ Example test case #2 with 1,2,3
+After each #2
+Before each #2
+    ✓ Example test case #2 with 2,2,4
+After each #2
+After #2
 ```
 
 ### todo
