@@ -27,10 +27,11 @@
   "compileOnSave": true,
   "files": [
     "index.ts",
-    "mocha.ts"
+    "mocha.ts",
+    "jest.ts"
   ],
   "include": [
     "src/**/*",
-    "mocha.test.ts"
+    "*.test.ts"
   ]
 }
