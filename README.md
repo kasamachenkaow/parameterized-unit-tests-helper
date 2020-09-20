@@ -10,9 +10,40 @@ or
 yarn add --dev p-test-js
 ```
 
+### initialize (Mocha)
+```ts
+import Mocha from "mocha";
+import { getDecorators } from 'p-test-js'
+
+const {
+  testsuite,
+  testname,
+  testcase,
+  before,
+  after,
+  beforeEach,
+  afterEach,
+} = getDecorators(Mocha);
+```
+
+### initialize (Jest)
+```ts
+import Jest from "@jest/globals";
+import { getDecorators } from 'p-test-js'
+
+const {
+  testsuite,
+  testname,
+  testcase,
+  before,
+  after,
+  beforeEach,
+  afterEach,
+} = getDecorators(Jest);
+```
+
 ### example 1 typescript (mocha)
 ```ts
-import { testsuite, testname, testcase } from 'p-test-js/mocha'
 import { expect } from 'chai'
 
 @testsuite("Example test suite #1")
@@ -39,7 +70,6 @@ After #1
 
 ### example 2 typescript (mocha)
 ```ts
-import { testsuite, testname, testcase } from 'p-test-js/mocha'
 import { expect } from 'chai'
 
 @testsuite("Example test suite #2")
@@ -70,3 +100,6 @@ Before each #2
 After each #2
 After #2
 ```
+
+### to-do
+- add automated deployment
