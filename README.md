@@ -56,11 +56,7 @@ const {
 } = getDecorators(Jest);
 ```
 
-<<<<<<< HEAD
 ### Example 1 typescript (mocha)
-=======
-### example 1 typescript (mocha)
->>>>>>> 87e00e2ca3322ab41a5fd4596e7fe29822b85277
 ```ts
 import { expect } from 'chai'
 
@@ -119,9 +115,5 @@ After each #2
 After #2
 ```
 
-<<<<<<< HEAD
 ### To-do
-=======
-### to-do
->>>>>>> 87e00e2ca3322ab41a5fd4596e7fe29822b85277
 - add automated deployment
