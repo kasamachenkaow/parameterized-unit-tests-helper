@@ -1,18 +1,63 @@
 # parameterized-unit-tests-helper
 This module is to help writing javascript unit testing
 in the parameterized way
-currently supports only `mocha` and `jest` but planned to support more javascript test frameworks
 
-### install
+It supports both `mocha@7.x.x` and `jest@26.x.x`
+It also should supports any test frameworks whose has the following functionalities
+```ts
+interface TestProvider {
+  describe: Function;
+  it: Function;
+  before?: Function;
+  after?: Function;
+  beforeAll?: Function;
+  afterAll?: Function;
+  beforeEach: Function;
+  afterEach: Function;
+}
+```
+
+### How to install?
 ```
 npm i --save-dev p-test-js
 or
 yarn add --dev p-test-js
 ```
 
-### example 1 typescript (mocha)
+### initialize (Mocha)
 ```ts
-import { testsuite, testname, testcase } from 'p-test-js/mocha'
+import Mocha from "mocha";
+import { getDecorators } from 'p-test-js'
+
+const {
+  testsuite,
+  testname,
+  testcase,
+  before,
+  after,
+  beforeEach,
+  afterEach,
+} = getDecorators(Mocha);
+```
+
+### Initialize (Jest)
+```ts
+import Jest from "@jest/globals";
+import { getDecorators } from 'p-test-js'
+
+const {
+  testsuite,
+  testname,
+  testcase,
+  before,
+  after,
+  beforeEach,
+  afterEach,
+} = getDecorators(Jest);
+```
+
+### Example 1 typescript (mocha)
+```ts
 import { expect } from 'chai'
 
 @testsuite("Example test suite #1")
@@ -28,7 +73,7 @@ export class DumpCalculatorTest1 {
 }
 ```
 
-### output 1
+### Output 1
 ```
   Example test suite #1
 Before #1
@@ -37,9 +82,8 @@ Before #1
 After #1
 ```
 
-### example 2 typescript (mocha)
+### Example 2 typescript (mocha)
 ```ts
-import { testsuite, testname, testcase } from 'p-test-js/mocha'
 import { expect } from 'chai'
 
 @testsuite("Example test suite #2")
@@ -58,7 +102,7 @@ export class DumpCalculatorTest2 {
 }
 ```
 
-### output 2
+### Output 2
 ```
   Example test suite #2
 Before #2
@@ -70,3 +114,6 @@ Before each #2
 After each #2
 After #2
 ```
+
+### To-do
+- add automated deployment

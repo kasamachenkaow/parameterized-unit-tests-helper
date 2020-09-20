@@ -1,6 +1,6 @@
 {
   "name": "p-test-js",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "engines": {
     "node": "12"
   },
@@ -14,7 +14,7 @@
     "test:jest": "jest jest.test.ts",
     "test": "npm run test:mocha && npm run test:jest",
     "dist": "npm run build && npm login && tsc && cp package.json dist && cp README.md dist && cd dist && npm run rm:test && npm publish",
-    "push": "git push && git tag v2.0.0 && git push origin v2.0.0"
+    "push": "git push && git tag v2.0.2 && git push origin v2.0.2"
   },
   "repository": {
     "type": "git",
