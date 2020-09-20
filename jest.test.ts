@@ -1,6 +1,5 @@
 import "reflect-metadata";
-import Mocha from "mocha";
-import { expect } from "chai";
+import Jest, { expect } from "@jest/globals";
 import { getDecorators } from "./";
 
 const {
@@ -11,7 +10,7 @@ const {
   after,
   beforeEach,
   afterEach,
-} = getDecorators(Mocha);
+} = getDecorators(Jest);
 
 @testsuite("Example test suite #1")
 @before(() => console.log("Before #1"))
@@ -21,7 +20,8 @@ export class DumpCalculatorTest1 {
   @testcase(2, 2, 4)
   superDumpPlusTest(a: number, b: number, expected: number): void {
     const r = a + b;
-    expect(r).to.be.eq(expected);
+    expect(r).toEqual(expected);
+    console.log(r);
   }
 }
 
@@ -36,7 +36,8 @@ export class DumpCalculatorTest2 {
   @testcase(2, 2, 4)
   superDumpPlusTest(a: number, b: number, expected: number): void {
     const r = a + b;
-    expect(r).to.be.eq(expected);
+    expect(r).toEqual(expected);
+    console.log(r);
   }
 }
 
@@ -51,6 +52,6 @@ export class DumpCalculatorTest3 {
   @testcase(2, 2, 4)
   superDumpPlusTest(a: number, b: number, expected: number): void {
     const r = a + b;
-    expect(r).to.be.eq(expected);
+    expect(r).toEqual(expected);
   }
 }

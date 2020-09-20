@@ -1,7 +1,7 @@
 # parameterized-unit-tests-helper
 This module is to help writing javascript unit testing
 in the parameterized way
-currently supports only `mocha` but planned to support more javascript test frameworks
+currently supports only `mocha` and `jest` but planned to support more javascript test frameworks
 
 ### install
 ```
@@ -70,7 +70,3 @@ Before each #2
 After each #2
 After #2
 ```
-
-### todo
-- add jest version, follow https://github.com/facebook/jest/pull/9801, https://github.com/jest-community/eslint-plugin-jest/issues/556
-- write tests

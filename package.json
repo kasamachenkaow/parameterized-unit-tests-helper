@@ -1,6 +1,6 @@
 {
   "name": "p-test-js",
-  "version": "1.0.18",
+  "version": "2.0.0",
   "engines": {
     "node": "12"
   },
@@ -9,10 +9,12 @@
   "description": "For parameterized javascript unit testing",
   "scripts": {
     "rm:test": "find . -name '*.test.*' -type f -delete",
-    "build": "rm -rf ./dist && tsc",
-    "test": "mocha --require ts-node/register/transpile-only ./**/*.test.ts",
-    "dist": "npm login && tsc && cp package.json dist && cp README.md dist && cd dist && npm run rm:test && npm publish",
-    "push": "git push && git tag v1.0.18 && git push origin v1.0.18"
+    "build": "rm -rf ./dist && rm -rf ./node_modules && npm i --production && tsc",
+    "test:mocha": "mocha --require ts-node/register/transpile-only mocha.test.ts",
+    "test:jest": "jest jest.test.ts",
+    "test": "npm run test:mocha && npm run test:jest",
+    "dist": "npm run build && npm login && tsc && cp package.json dist && cp README.md dist && cd dist && npm run rm:test && npm publish",
+    "push": "git push && git tag v2.0.0 && git push origin v2.0.0"
   },
   "repository": {
     "type": "git",
@@ -36,17 +38,21 @@
   },
   "homepage": "https://github.com/kasamachenkaow/parameterized-unit-tests-helper#readme",
   "dependencies": {
-    "mocha": "7.1.1",
-    "reflect-metadata": "0.1.13"
+    "reflect-metadata": "0.1.13",
+    "typescript": "3.8.3"
   },
   "devDependencies": {
+    "@jest/globals": "^26.4.2",
     "@types/chai": "^4.2.11",
+    "@types/jest": "^26.0.14",
     "@types/mocha": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
+    "jest": "26.4.2",
+    "mocha": "7.1.1",
     "chai": "^4.2.0",
     "eslint": "^7.8.1",
-    "ts-node": "8.6.2",
-    "typescript": "3.7.5"
+    "ts-jest": "^26.3.0",
+    "ts-node": "8.6.2"
   }
 }
