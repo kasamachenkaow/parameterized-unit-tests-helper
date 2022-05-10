@@ -33,7 +33,6 @@ jobs:
           npm run build
           npm run test
           npm run dist
-          npm publish --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           CI: true
