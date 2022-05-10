@@ -18,9 +18,7 @@ export const getTestMethod = (
 
   if (!testClass) return undefined;
 
-  const testMethod = testClass.methods.find((t) => t.key === testId);
-
-  return testMethod;
+  return testClass.methods.find((t) => t.key === testId);
 };
 
 export const putTestClassIfNotExist = (

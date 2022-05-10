@@ -1,7 +1,7 @@
 import { getTestMethod, putTestMethodIfNotExist } from "./utils/testdata";
 import { TestMethod } from "./utils/types";
 
-const buider = () =>
+const testname = () =>
   (name: string) => {
     return function (target: object, propertyKey: string): void {
       const testMethod = getTestMethod(target.constructor, propertyKey) ?? {
@@ -14,4 +14,4 @@ const buider = () =>
     };
   };
 
-export default buider;
+export default testname;

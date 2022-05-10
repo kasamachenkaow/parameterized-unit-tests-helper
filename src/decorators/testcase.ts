@@ -1,7 +1,7 @@
 import { getTestMethod, putTestMethodIfNotExist } from "./utils/testdata";
 import { TestMethod } from "./utils/types";
 
-const buider = () =>
+const testcase = () =>
   (...args: unknown[]) => {
     return function (
       target: object,
@@ -30,4 +30,4 @@ const buider = () =>
     };
   };
 
-export default buider;
+export default testcase;

@@ -1,7 +1,7 @@
 import { getTestClass } from "./utils/testdata";
 import { TestMethod, TestClass } from "./utils/types";
 
-const buider = (
+const testsuite = (
   testscopeFn: Function,
   testcaseFn: Function,
   beforeFn: Function,
@@ -10,7 +10,7 @@ const buider = (
   afterEachFn: Function,
 ) => {
   const loopAllCases = (t: TestMethod) => {
-    t.cases.reverse().forEach((args: unknown[]) =>
+    [...t.cases].reverse().forEach((args: unknown[]) =>
       testcaseFn(`${t.name} with ${args.toString()}`, () => {
         if (t.fn) {
           t.fn(...args);
@@ -38,4 +38,4 @@ const buider = (
   };
 };
 
-export default buider;
+export default testsuite;

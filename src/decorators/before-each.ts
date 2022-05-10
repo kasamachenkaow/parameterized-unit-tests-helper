@@ -1,7 +1,7 @@
 import { getTestClass, putTestClassIfNotExist } from "./utils/testdata";
 import { TestClass } from "./utils/types";
 
-const buider = () =>
+const beforeEach = () =>
   (beforeEachFn: Function) => {
     return function (constructor: Function): void {
       const testClass = getTestClass(constructor) ?? {
@@ -14,4 +14,4 @@ const buider = () =>
     };
   };
 
-export default buider;
+export default beforeEach;

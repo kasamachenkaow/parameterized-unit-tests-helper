@@ -19,7 +19,7 @@ export interface TestProvider {
   afterEach: Function;
 }
 
-export const emptyfn = () => {};
+export const emptyfn = () => 0;
 
 export const getDecorators = (testProvider: TestProvider) => {
   const testname = testnameBuilder();
