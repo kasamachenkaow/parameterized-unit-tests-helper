@@ -26,16 +26,14 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install node modules
-        run: npm i
-
-      - name: Build
-        run: npm run build
-
-      - name: Run tests
-        run: npm run test
-
-      - name: Dist
-        run: npm run dist
+      - name: Publish
+        run: |
+          npm whoami
+          npm ci
+          npm run build
+          npm run test
+          npm run dist
+          npm publish --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CI: true
