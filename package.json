@@ -1,6 +1,6 @@
 {
   "name": "p-test-js",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "main": "index.js",
   "types": "index.d.ts",
   "description": "For parameterized javascript unit testing",
