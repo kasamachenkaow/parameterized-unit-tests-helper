@@ -116,4 +116,4 @@ After #2
 ```
 
 ### To-do
-- add automated deployment
+- add automated deployment ✓

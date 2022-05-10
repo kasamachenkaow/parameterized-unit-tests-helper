@@ -21,11 +21,21 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Runs a single command using the runners shell
       - name: Install node modules
         run: npm i
 
+      # Building
+      - name: Build
+        run: npm run build
+
       # Runs a set of commands using the runners shell
       - name: Run tests
         run: npm run test
+
+      # Runs a set of commands using the runners shell
+      - name: Dist
+        run: npm run dist
