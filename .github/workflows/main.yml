@@ -26,26 +26,16 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
 
-      # Runs a set of commands using the runners shell
-      - name: NPM Log In
-        run: npm login
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # Runs a single command using the runners shell
       - name: Install node modules
         run: npm i
 
-      # Building
       - name: Build
         run: npm run build
 
-      # Runs a set of commands using the runners shell
       - name: Run tests
         run: npm run test
 
-      # Runs a set of commands using the runners shell
       - name: Dist
         run: npm run dist
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
